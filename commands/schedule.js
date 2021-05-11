@@ -15,6 +15,11 @@ module.exports = {
         
         num = args[1] && division !== 'all' ? parseInt(args[1]) : -1;
 
+        message.channel.send(
+            `There are ${data.length} events scheduled for PBST!` +
+            `${num !== -1 ? `\n **Only showing up to ${num} event` +
+            `${num > 1 ? 's' : ''}!**` : '!'}`
+        );
 
         for (const d of data) {
             if (counter === num) return; counter++;
