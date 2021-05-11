@@ -4,7 +4,7 @@ const embedUtil = require('../embedUtil');
 const dayjs = require('dayjs').extend(utc);
 
 module.exports = {
-    name: 'nextevent',
+    name: 'nextEvent',
     aliases: ['ne'],
     args: true,
     execute(message, args) {
