@@ -14,15 +14,14 @@ module.exports = {
 
         if (args[1] === '0') return message.channel.send('Such emptiness.');
 
-
-        num = args[1] && args[1].toLowerCase() !== 'all' ? parseInt(args[1]) : -1;
+        num = args[1] && args[1].toLowerCase() !== 'all' ? parseInt(args[1]) : data.length + 1;
 
         if (num < 0) return message.channel.send('**Negative events!** :zany_face:')
 
 
         message.channel.send(
             `There are ${data.length} events scheduled for ${division}!` +
-            `${num !== -1 ? `\n**Only showing up to ${num} event` +
+            `${num !== data.length+1 ? `\n**Only showing up to ${num} event` +
                 `${num > 1 ? 's' : ''}!**` : ''}`
         );
 
