@@ -17,7 +17,7 @@ module.exports = {
 
         message.channel.send(
             `There are ${data.length} events scheduled for ${division}!` +
-            `${num !== -1 ? `\n **Only showing up to ${num} event` +
+            `${num !== -1 ? `\n**Only showing up to ${num} event` +
                 `${num > 1 ? 's' : ''}!**` : ''}`
         );
 
