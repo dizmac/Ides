@@ -38,8 +38,7 @@ client.on('message', message => {
     try {
         command.execute(message, args);
     } catch (error) {
-        // return message.channel.send('Invalid Division!');
-        console.log(error)
+        return message.channel.send('Invalid Division!');
     }
 
 })
