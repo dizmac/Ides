@@ -13,8 +13,8 @@ module.exports = {
         let num, counter = 0;
 
         if (args[1] === '0') {
-            return message.channel.send('Such emptyness.');
-        };
+            return message.channel.send('Such emptiness.');
+        }
 
 
         num = args[1] && args[1].toLowerCase() !== 'all' ? parseInt(args[1]) : -1;
