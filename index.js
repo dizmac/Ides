@@ -32,13 +32,13 @@ client.on('message', message => {
     if (!command) return;
 
     if (command.args && !args.length) {
-        return message.reply("You are missing the critical argument(s)!");
+        return message.reply("You must include a division!");
     }
 
     try {
         command.execute(message, args);
     } catch (error) {
-        return message.channel.send('Invalid Division!');
+        return message.channel.send('Invalid Argument(s)!');
     }
 
 })

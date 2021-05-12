@@ -1,7 +1,7 @@
 const Cache = require('../cache');
 const utc = require('dayjs/plugin/utc');
 const embedUtil = require('../embedUtil');
-const math = require('mathjs')
+const math = require('mathjs');
 const dayjs = require('dayjs').extend(utc);
 
 
