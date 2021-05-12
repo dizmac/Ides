@@ -13,7 +13,7 @@ module.exports = {
         let num, counter = 0;
 
 
-        num = args[1] && division !== 'ALL' ? parseInt(args[1]) : -1;
+        num = args[1] && args[1].toLowerCase() !== 'all' ? parseInt(args[1]) : -1;
 
         message.channel.send(
             `There are ${data.length} events scheduled for ${division}!` +
