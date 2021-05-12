@@ -12,13 +12,13 @@ module.exports = {
         const division = args[0].toUpperCase(), data = Cache.getCache(division);
         let num, counter = 0;
 
-        
-        num = args[1] && division !== 'all' ? parseInt(args[1]) : -1;
+
+        num = args[1] && division !== 'ALL' ? parseInt(args[1]) : -1;
 
         message.channel.send(
             `There are ${data.length} events scheduled for ${division}!` +
             `${num !== -1 ? `\n **Only showing up to ${num} event` +
-            `${num > 1 ? 's' : ''}!**` : ''}`
+                `${num > 1 ? 's' : ''}!**` : ''}`
         );
 
         for (const d of data) {
