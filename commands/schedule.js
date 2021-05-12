@@ -12,12 +12,13 @@ module.exports = {
         const division = args[0].toUpperCase(), data = Cache.getCache(division);
         let num, counter = 0;
 
-        if (args[1] === '0') {
-            return message.channel.send('Such emptiness.');
-        }
+        if (args[1] === '0') return message.channel.send('Such emptiness.');
 
 
         num = args[1] && args[1].toLowerCase() !== 'all' ? parseInt(args[1]) : -1;
+
+        if (num < 0) return message.channel.send('**Negative events!** :zany_face:')
+
 
         message.channel.send(
             `There are ${data.length} events scheduled for ${division}!` +
