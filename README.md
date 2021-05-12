@@ -6,6 +6,9 @@ https://discord.com/api/oauth2/authorize?client_id=841148794498580480&permission
 
 ## Usage
 
+**Prefix**
+> '**s!**'
+
 ### **schedule**
 **Aliases**  
 > ['**s**']
@@ -22,7 +25,7 @@ https://discord.com/api/oauth2/authorize?client_id=841148794498580480&permission
 
 ### nextEvent
 **Aliases**
-> [**ne**]
+> ['**ne**']
 
 **Argument 1**
 > Division (**Mandatory Argument**)
