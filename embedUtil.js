@@ -5,6 +5,12 @@ const dayjs = require('dayjs').extend(utc).extend(RelativeTime);
 
 module.exports = {
     create(data, division, name, date, type) {
+        if (type === 'noEvents') {
+            return new Discord.MessageEmbed()
+                .setAuthor('Ides', 'https://cdn.discordapp.com/avatars/841148794498580480/148535dbc855f1468b7dff5dc00f48dd.png?size=256')
+                .setTitle(`No events available for ${division}!`)
+                .setTimestamp();
+        }
         if (type === 'schedule') {
             return new Discord.MessageEmbed()
                 .setAuthor(name, process.env[`${division}_ICON`])
