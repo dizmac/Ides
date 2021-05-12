@@ -15,6 +15,7 @@
     "uranus.js": "^1.0.21"
   },
   "devDependencies": {
-    "dotenv": "^9.0.1"
+    "dotenv": "^9.0.1",
+    "mathjs": "^9.3.2"
   }
 }

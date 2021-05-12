@@ -1,6 +1,7 @@
 const Cache = require('../cache');
 const utc = require('dayjs/plugin/utc');
 const embedUtil = require('../embedUtil');
+const math = require('mathjs')
 const dayjs = require('dayjs').extend(utc);
 
 
@@ -14,7 +15,7 @@ module.exports = {
 
         if (args[1] === '0') return message.channel.send('Such emptiness.');
 
-        num = args[1] && args[1].toLowerCase() !== 'all' ? parseInt(args[1]) : data.length + 1;
+        num = args[1] && args[1].toLowerCase() !== 'all' ? Math.floor(math.evaluate(args[1])) : data.length + 1;
 
         if (num < 0) return message.channel.send('**Negative events!** :zany_face:')
 
