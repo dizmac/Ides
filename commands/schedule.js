@@ -1,4 +1,4 @@
-const Cache = require('../cache');
+const Cache = require('../utility/cache');
 const filter = require('../utility/filter');
 const utc = require('dayjs/plugin/utc');
 const embedUtil = require('../embedUtil');
@@ -14,7 +14,6 @@ module.exports = {
         const division = args[0].toUpperCase(),
             name = division === 'PBST' ? 'Security' : division === 'TMS' ? 'Syndicate' : division === 'PET' ? 'Emergency' : 'Media';
         let num, host, counter = 0, data = Cache.getCache(division), eventCount = data.length;
-
 
         if (args[1] && args[1].startsWith('host=')) {
             host = args[1].split('=')[1];

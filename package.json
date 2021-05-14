@@ -12,6 +12,7 @@
   "dependencies": {
     "dayjs": "^1.10.4",
     "discord.js": "^12.5.3",
+    "mssql": "^7.1.0",
     "uranus.js": "^1.0.21"
   },
   "devDependencies": {

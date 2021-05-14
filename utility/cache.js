@@ -11,7 +11,7 @@ let cache = {
 };
 
 async function sGet() {
-    console.log("Sending requests to Kronos API...");
+    console.log("[CACHE] Sending requests to Kronos API!");
     await Kronos.get.schedule('', true).then(r => {
         let data = JSON.parse(r);
         get(data.pbst, 'PBST');
@@ -39,9 +39,7 @@ module.exports = {
         return cache[Division];
     },
     init() {
-        sGet()
-
-        setInterval(() => sGet(), 300000)
+        sGet(); setInterval(() => sGet(), 300000);
     }
 }
 
