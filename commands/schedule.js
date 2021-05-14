@@ -21,6 +21,7 @@ module.exports = {
             data = filter.filterHost(data, host);
         } else {
             if (args[1] === '0') return message.channel.send('Such emptiness.');
+            if (args[1] === 'null') return message.channel.send('Such emptiness.');
             num = args[1] && args[1].toLowerCase() !== 'all' ? Math.floor(math.evaluate(args[1])) : data.length + 1;
             if (num < 0) return message.channel.send('**Negative events!** :zany_face:')
         }
