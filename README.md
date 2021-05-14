@@ -17,7 +17,7 @@ https://discord.com/api/oauth2/authorize?client_id=841148794498580480&permission
 > Division (**Mandatory Argument**)
 
 **Argument 2**
-> Events shown (Optional Argument, if not supplied, all the events will be shown)
+> Filter/Events shown (Optional Argument, if not supplied, all the events will be shown)
 
 **Usage**
 > s!s PBST 5  
