@@ -46,7 +46,7 @@ client.on('message', async message => {
     }
 
     try {
-        command.execute(message, args);
+        command.execute(message, args, client);
     } catch (error) {
         return message.channel.send('Invalid Argument(s)!');
     }
