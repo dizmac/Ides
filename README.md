@@ -23,6 +23,9 @@ https://discord.com/api/oauth2/authorize?client_id=841148794498580480&permission
 > s!s PBST 5  
 > *Shows **5** events from the security schedule*
 
+> s!s TMS EnthusiasticKuba4007
+> *Shows **ALL** events hosted by EnthusiasticKuba4007 in the Syndicates Schedule*
+
 ### nextEvent
 **Aliases**
 > ['**ne**']
