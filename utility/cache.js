@@ -35,10 +35,10 @@ function get(r, Division) {
 
 
 module.exports = {
-    getCache(Division) {
+    getCache: (Division) => {
         return cache[Division];
     },
-    init() {
+    init: () => {
         sGet(); setInterval(() => sGet(), 300000);
     }
 }
