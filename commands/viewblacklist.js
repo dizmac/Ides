@@ -22,6 +22,8 @@ module.exports = {
                 await message.channel.send(embed);
             })
         } else {
+            if (isNaN(parseInt(args[0]))) return message.channel.send('Invalid User ID!');
+
             database.get(message.guild.id, args[0]).then(async res => {
                 const target = await member.fetch(message, args[0]);
                 embed.setDescription(`Blacklist information for ${target}`);
