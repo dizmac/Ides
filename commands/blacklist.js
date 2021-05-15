@@ -13,6 +13,7 @@ module.exports = {
         const guild_id = message.guild.id;
 
         if (!target) return message.channel.send('Please mention a user that you want to blacklist!');
+        if (target = bot) return message.channel.send(`You can't blacklist a bot!`)
         if (target.id === message.author.id) return message.channel.send('You can not blacklist yourself...:pensive:')
         if (authorized.includes(target.id)) return message.channel.send('You can not blacklist the bot developers!')
 
