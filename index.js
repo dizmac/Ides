@@ -59,7 +59,7 @@ client.on('message', async message => {
 
             if (now < expirationTime) {
 	            const timeLeft = (expirationTime - now) / 1000;
-	            return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing this command.`);
+	            return message.reply(`You are using commands too fast! Please wait ${timeLeft.toFixed(1)} seconds before trying again.`);
                 }
 	        }
         timestamps.set(message.author.id, now);
