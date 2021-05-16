@@ -9,6 +9,7 @@ const client = new Discord.Client();
 require('dotenv').config(); database.connect(); Cache.init();
 
 client.commands = new Discord.Collection();
+client.cooldowns = new discord.Collection();
 
 client.once('ready', () => console.log("[DISCORD.JS] Ready!"));
 client.login(process.env.TOKEN).then(() => console.log("[DISCORD.JS] Logged in!"));
@@ -44,6 +45,29 @@ client.on('message', async message => {
     if (command.args && !args.length) {
         return message.reply("You must include a division!");
     }
+    if (!cooldowns.has(command.name)) {
+	        cooldowns.set(command.name, new discord.Collection());
+    }
+
+    const now = Date.now();
+    const timestamps = cooldowns.get(command.name);
+    const cooldownAmount = (command.cooldown || 2) * 1000;
+
+    if (!authorized.includes(message.author.id)) { //Ignores if user is bot dev
+        if (timestamps.has(message.author.id)) { 
+            const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+            if (now < expirationTime) {
+	            const timeLeft = (expirationTime - now) / 1000;
+	            return message.reply(`You are using commands too fast! Please wait ${timeLeft.toFixed(1)} seconds before trying again.`);
+                }
+	        }
+        timestamps.set(message.author.id, now);
+        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+        }
+
+
+
 
     try {
         command.execute(message, args, client);

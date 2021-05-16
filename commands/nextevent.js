@@ -6,6 +6,7 @@ const dayjs = require('dayjs').extend(utc);
 module.exports = {
     name: 'nextEvent',
     aliases: ['ne'],
+    cooldown: 5,
     args: true,
     execute(message, args) {
         const division = args[0].toUpperCase(),

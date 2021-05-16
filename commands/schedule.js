@@ -9,6 +9,7 @@ const dayjs = require('dayjs').extend(utc);
 module.exports = {
     name: 'schedule',
     aliases: ['s'],
+    cooldown: 10,
     args: true,
     execute(message, args) {
         const division = args[0].toUpperCase(),

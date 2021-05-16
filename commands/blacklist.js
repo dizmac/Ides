@@ -5,6 +5,7 @@ module.exports = {
     name: 'blacklist',
     aliases: ['b'],
     args: false,
+    cooldown: 0,
     execute(message) {
         if (!message.member.hasPermission("MANAGE_MESSAGES") && !authorized.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a bot administrator or have "MANAGE_MESSAGES" permission!');
