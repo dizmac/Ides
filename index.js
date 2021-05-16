@@ -50,7 +50,7 @@ client.on('message', async message => {
 
     const now = Date.now(), timestamps = cooldowns.get(command.name), cooldownAmount = (command.cooldown || 2) * 1000;
 
-    if (timestamps.has(message.author.id)) {
+    if (!globalThis.authorized.includes(message.author.id) && timestamps.has(message.author.id)) {
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
         if (now < expirationTime) return message.reply(`Please wait ${((expirationTime - now) / 1000).toFixed()} more second(s) before reusing the \'${command.name}\' command.`);
     }
