@@ -1,13 +1,12 @@
 const database = require('../utility/database');
-const authorized = ['336079549613867008', '700771513774768189'];
 
 module.exports = {
     name: 'blacklist',
     aliases: ['b'],
     args: false,
-    cooldown: 0,
+    cooldown: 10,
     execute(message) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES") && !authorized.includes(message.author.id))
+        if (!message.member.hasPermission("MANAGE_MESSAGES") && !globalThis.authorized.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a bot administrator or have "MANAGE_MESSAGES" permission!');
 
         const target = message.mentions.members.first();

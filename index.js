@@ -6,10 +6,12 @@ const database = require('./utility/database');
 const { prefix } = require('./config.json');
 const client = new Discord.Client();
 
-require('dotenv').config(); database.connect(); Cache.init();
+require('dotenv').config(); database.connect(); Cache.init(); globalThis.authorized = ['336079549613867008', '700771513774768189'];
 
-client.commands = new Discord.Collection();
-client.cooldowns = new discord.Collection();
+
+client.commands = new Discord.Collection(); client.cooldowns = new Discord.Collection();
+
+const { cooldowns } = client;
 
 client.once('ready', () => console.log("[DISCORD.JS] Ready!"));
 client.login(process.env.TOKEN).then(() => console.log("[DISCORD.JS] Logged in!"));
@@ -42,31 +44,19 @@ client.on('message', async message => {
 
     if (blacklisted) return message.channel.send('You are blacklisted from the bot in this guild! You can not run commands here!');
 
-    if (command.args && !args.length) {
-        return message.reply("You must include a division!");
+    if (command.args && !args.length) return message.reply("You must include a division!");
+
+    if (!client.cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection());
+
+    const now = Date.now(), timestamps = cooldowns.get(command.name), cooldownAmount = (command.cooldown || 2) * 1000;
+
+    if (timestamps.has(message.author.id)) {
+        const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+        if (now < expirationTime) return message.reply(`Please wait ${((expirationTime - now) / 1000).toFixed()} more second(s) before reusing the \'${command.name}\' command.`);
     }
-    if (!cooldowns.has(command.name)) {
-	        cooldowns.set(command.name, new discord.Collection());
-    }
 
-    const now = Date.now();
-    const timestamps = cooldowns.get(command.name);
-    const cooldownAmount = (command.cooldown || 2) * 1000;
-
-    if (!authorized.includes(message.author.id)) { //Ignores if user is bot dev
-        if (timestamps.has(message.author.id)) { 
-            const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-
-            if (now < expirationTime) {
-	            const timeLeft = (expirationTime - now) / 1000;
-	            return message.reply(`You are using commands too fast! Please wait ${timeLeft.toFixed(1)} seconds before trying again.`);
-                }
-	        }
-        timestamps.set(message.author.id, now);
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-        }
-
-
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 
     try {
@@ -74,6 +64,5 @@ client.on('message', async message => {
     } catch (error) {
         return message.channel.send('Invalid Argument(s)!');
     }
-
 })
 
