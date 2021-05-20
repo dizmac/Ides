@@ -5,17 +5,18 @@ module.exports = {
     aliases: ['b'],
     args: false,
     cooldown: 10,
-    execute(message) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES") && !globalThis.authorized.includes(message.author.id))
+    execute(message, args, client, isRoot) {
+        if (!message.member.hasPermission("MANAGE_MESSAGES") && !developerIDs.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a bot administrator or have "MANAGE_MESSAGES" permission!');
 
         const target = message.mentions.members.first();
         const guild_id = message.guild.id;
 
         if (!target) return message.channel.send('Please mention a user that you want to blacklist!');
-        if (target.id === message.author.id) return message.channel.send('You can not blacklist yourself...:pensive:')
-        if (authorized.includes(target.id)) return message.channel.send('You can not blacklist the bot developers!')
-
+        if (!isRoot) {
+            if (target.id === message.author.id) return message.channel.send('You can not blacklist yourself...:pensive:')
+            if (developerIDs.includes(target.id)) return message.channel.send('You can not blacklist the bot developers!')
+        }
         message.channel.send(`Adding the user to the blacklist for this guild (**${guild_id}**)!`);
 
         database.add(guild_id, target.id).then((r) => {

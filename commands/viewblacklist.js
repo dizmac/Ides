@@ -8,7 +8,7 @@ module.exports = {
     args: false,
     cooldown: 10,
     execute(message, args) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES") && !globalThis.authorized.includes(message.author.id))
+        if (!message.member.hasPermission("MANAGE_MESSAGES") && !developerIDs.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a bot administrator or have "MANAGE_MESSAGES" permission!');
 
         const embed = new Discord.MessageEmbed().setTitle('Blacklist').setColor('#FF0000').setAuthor('Ides', 'https://cdn.discordapp.com/avatars/841148794498580480/148535dbc855f1468b7dff5dc00f48dd.png?size=256');
@@ -27,7 +27,7 @@ module.exports = {
             database.get(message.guild.id, args[0]).then(async res => {
                 const target = await member.fetch(message, args[0]);
                 embed.setDescription(`Blacklist information for ${target}`);
-                embed.addField('canBlacklist', target.hasPermission('MANAGE_MESSAGES') || authorized.includes(target.id) ? 'True' : 'False');
+                embed.addField('canBlacklist', target.hasPermission('MANAGE_MESSAGES') || developerIDs.includes(target.id) ? 'True' : 'False');
                 embed.addField('isBlacklisted', res.length !== 0 ? 'True' : 'False');
                 await message.channel.send(embed);
             })

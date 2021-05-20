@@ -6,7 +6,7 @@ module.exports = {
     args: false,
     cooldown: 10,
     execute(message) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES") && !globalThis.authorized.includes(message.author.id))
+        if (!message.member.hasPermission("MANAGE_MESSAGES") && !developerIDs.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a **bot administrator** or have the **"MANAGE_MESSAGES"** permission!');
 
         const target = message.mentions.members.first();

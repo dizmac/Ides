@@ -1,6 +1,6 @@
 const Cache = require('../utility/cache');
 const utc = require('dayjs/plugin/utc');
-const embedUtil = require('../embedUtil');
+const embedUtil = require('../utility/embedUtil');
 const dayjs = require('dayjs').extend(utc);
 
 module.exports = {
