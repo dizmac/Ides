@@ -3,6 +3,7 @@
 
 ### v1.2.0 [CURRENT]
 * Introduction to the command `s!notify`
+* Added notifier util
 
 ### v1.1.1
 * Cooldown added, credits to femou for helping
