@@ -15,7 +15,7 @@ module.exports = {
 
         if (args.length === 0) {
             embed.setDescription('Here is a list of blacklisted users for this guild!');
-            database.get(message.guild.id, 'user_id').then(async res => {
+            database.getBlacklist(message.guild.id, 'user_id').then(async res => {
                 for (let i = 0; i < res.length; i++) {
                     embed.addField(`User #${i + 1}`, `${await member.fetch(message, res[i].user_id)}`, false);
                 }
@@ -24,11 +24,12 @@ module.exports = {
         } else {
             if (isNaN(parseInt(args[0]))) return message.channel.send('Invalid User ID!');
 
-            database.get(message.guild.id, args[0]).then(async res => {
+            database.getBlacklist(message.guild.id, args[0]).then(async res => {
                 const target = await member.fetch(message, args[0]);
                 embed.setDescription(`Blacklist information for ${target}`);
                 embed.addField('canBlacklist', target.hasPermission('MANAGE_MESSAGES') || developerIDs.includes(target.id) ? 'True' : 'False');
                 embed.addField('isBlacklisted', res.length !== 0 ? 'True' : 'False');
+                embed.addField('blacklistReason', res[0].blacklist_reason, false);
                 await message.channel.send(embed);
             })
         }

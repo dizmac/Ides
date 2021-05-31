@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const Cache = require('./utility/cache');
 const database = require('./utility/database');
+const notifier = require('./utility/notifier');
 const { prefix } = require('./config.json');
 const client = new Discord.Client();
 
@@ -13,7 +14,7 @@ client.commands = new Discord.Collection(); client.cooldowns = new Discord.Colle
 
 const { cooldowns } = client;
 
-client.once('ready', () => console.log("[DISCORD.JS] Ready!"));
+client.once('ready', () => {console.log("[DISCORD.JS] Ready!"); notifier.init(client)});
 client.login(process.env.TOKEN).then(() => console.log("[DISCORD.JS] Logged in!"));
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -38,7 +39,7 @@ client.on('message', async message => {
 
     let blacklisted = false;
 
-    await database.get(message.guild.id, message.author.id).then(res => {
+    await database.getBlacklist(message.guild.id, message.author.id).then(res => {
         if (res.length > 0) blacklisted = true;
     })
 

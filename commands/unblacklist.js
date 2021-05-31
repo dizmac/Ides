@@ -16,7 +16,7 @@ module.exports = {
 
         message.channel.send(`Removing the user from the blacklist for this guild (**${guild_id}**)!`);
 
-        database.remove(guild_id, target.id).then((r) => {
+        database.removeBlacklist(guild_id, target.id).then((r) => {
             if (r) message.channel.send(`Successfully removed ${target.displayName} from the command blacklist!`);
             else message.channel.send('Something went wrong while removing the user from the command blacklist.');
         });
