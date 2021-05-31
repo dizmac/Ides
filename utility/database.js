@@ -21,10 +21,6 @@ module.exports = {
         return await promise;
     },
     addNotification: async (uid, timestamp, tid) => {
-        console.log(uid);
-        console.log(timestamp);
-        console.log(tid);
-
         let promise = new Promise((resolve, reject) => {
             const request = new sql.Request();
             request.query(`INSERT INTO notifications(user_id, time_stamp, trello_id) VALUES (${uid}, ${timestamp}, '${tid}')`, function(err) {

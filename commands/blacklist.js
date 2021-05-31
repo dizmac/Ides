@@ -11,8 +11,7 @@ module.exports = {
 
         const target = message.mentions.members.first();
         const guild_id = message.guild.id;
-        const reason = args[1];
-        console.log(reason)
+        let reason = args; reason.shift(); reason = reason.join(' ');
 
         if (!target || !reason) return message.channel.send('Please supply the required arguments!');
         if (!isRoot) {

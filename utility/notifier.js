@@ -13,6 +13,7 @@ module.exports = {
             if (timestamp - Date.now()/1000 < 0) return database.removeNotification(user.id, trello_id);
             Timer(timestamp, trello_id, user);
         }
+        console.log('[NOTIFIER] Initialized!');
     },
     newTimer: (timestamp, tid, user) => Timer(timestamp, tid, user)
 
