@@ -1,6 +1,10 @@
 # Changelogs
 ## A detailed logs for changes and additions to the bot
 
+### v1.2.1 [CURRENT]
+* `s!blacklist` and `s!unblacklist` are now using user IDs instead of mentions
+* Anti-troll mechanisms added
+
 ### v1.2.0 [CURRENT]
 * Introduction to the command `s!notify`
 * Added notifier util

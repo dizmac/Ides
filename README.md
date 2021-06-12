@@ -48,11 +48,11 @@ https://github.com/d-macks/Ides/blob/master/CHANGELOGS.md
 > ['**ub**', '**ublacklist**']
 
 **Argument 1**
-> User (**Mandatory Argument**)
+> User ID (**Mandatory Argument**)
 
 **Usage**
-> s!unblacklist [**Mentioned User**]  
-> *Unblacklists the **Mentioned User***
+> s!unblacklist [**User ID**]  
+> *Unblacklists the **User ID***
 
 
 ### **blacklist**
@@ -61,14 +61,14 @@ https://github.com/d-macks/Ides/blob/master/CHANGELOGS.md
 > ['**b**']
 
 **Argument 1**
-> User (**Mandatory Argument**)
+> User ID (**Mandatory Argument**)
 
 **Argument 2**
 > Reason (**Mandatory Argument**)
 
 **Usage**
-> s!blacklist [**Mentioned User**] Example reason   
-> *Blacklists the **Mentioned User** with Example reason*
+> s!blacklist [**User ID**] [**Example reason**]  
+> *Blacklists the **User ID** with **Example reason***
 
 ### **schedule**
 **Aliases**  
