@@ -17,6 +17,7 @@ module.exports = {
         let num, host, counter = 0, data = Cache.getCache(division), eventCount = data.length;
 
         if (args[1] && args[1].startsWith('host=')) {
+            if (args[1] === 'host=@here' || args[1] === 'host=@everyone') return message.channel.send('Invalid argument!');
             host = args[1].split('=')[1];
             data = filter.filterHost(data, host);
         } else {
