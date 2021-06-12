@@ -5,7 +5,7 @@
 * `s!blacklist` and `s!unblacklist` are now using user IDs instead of mentions
 * Anti-troll mechanisms added
 
-### v1.2.0 [CURRENT]
+### v1.2.0
 * Introduction to the command `s!notify`
 * Added notifier util
 
