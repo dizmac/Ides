@@ -42,8 +42,7 @@ client.on('message', async message => {
     await database.getBlacklist(message.guild.id, message.author.id).then(res => {
         if (res.length > 0) blacklisted = true;
     })
-
-    if (message.mentions.everyone || message.mentions.roles.first() || message.mentions.users.first()) return message.channel.send("Try to run the command again, but with less trolling!");
+                                if (message.content.includes("@")) return message.channel.send("Try to run the command again, but with less trolling!");
     if (!root && blacklisted) return message.channel.send('You are blacklisted from the bot in this guild! You can not run commands here!');
 
     if (command.args && !args.length) return message.reply("You must include a division!");
