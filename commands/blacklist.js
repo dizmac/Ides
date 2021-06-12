@@ -1,19 +1,21 @@
 const database = require('../utility/database');
+const member = require('../utility/member');
 
 module.exports = {
     name: 'blacklist',
     aliases: ['b'],
     args: false,
     cooldown: 10,
-    execute(message, args, client, isRoot) {
+    async execute(message, args, client, isRoot) {
         if (!message.member.hasPermission("MANAGE_MESSAGES") && !developerIDs.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a bot administrator or have "MANAGE_MESSAGES" permission!');
 
-        const target = message.mentions.members.first();
+        const target = await member.fetch(message, args[0]);
+        console.log(target);
         const guild_id = message.guild.id;
-        let reason = args; reason.shift(); reason = reason.join(' ');
+        let reason = args; await reason.shift(); reason = reason.join(' ');
 
-        if (!target || !reason) return message.channel.send('Please supply the required arguments!');
+        if (!target || !reason) return message.channel.send('Please supply the valid arguments!');
         if (!isRoot) {
             if (target.id === message.author.id) return message.channel.send('You can not blacklist yourself...:pensive:')
             if (developerIDs.includes(target.id)) return message.channel.send('You can not blacklist the bot developers!')

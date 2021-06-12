@@ -1,15 +1,16 @@
 const database = require('../utility/database');
+const member = require('../utility/member');
 
 module.exports = {
     name: 'unblacklist',
     aliases: ['ub', 'ublacklist'],
     args: false,
     cooldown: 10,
-    execute(message) {
+    async execute(message, args) {
         if (!message.member.hasPermission("MANAGE_MESSAGES") && !developerIDs.includes(message.author.id))
             return message.channel.send('**Insufficient Permission!**\nYou must be a **bot administrator** or have the **"MANAGE_MESSAGES"** permission!');
 
-        const target = message.mentions.members.first();
+        const target = await member.fetch(message, args[0]);
         const guild_id = message.guild.id;
 
         if (!target) return message.channel.send('Please mention a user that you want to remove from the blacklist!');
