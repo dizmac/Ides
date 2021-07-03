@@ -26,7 +26,7 @@ module.exports = {
 
                     database.addNotification(message.author.id, event.Time, event.TrainingID).then(() => {
                         notifier.newTimer(offset, event.TrainingID, message.author);
-                        message.channel.send(`Notification set for event \`${event.TrainingID}\`! You will be notified when the event starts. (The event may or may not start early, refer to raid-alerts for the actual starting time!`);
+                        message.channel.send(`Notification set for event \`${event.TrainingID}\`! You will be notified when the event starts. (The event may or may not start early, refer to raid-alerts for the actual starting time!)`);
                     }).catch(() => message.channel.send('Something went wrong while adding your notification!'));
                 }
             }
