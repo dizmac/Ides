@@ -1,10 +1,11 @@
+require('dotenv').config();
 const Discord = require('discord.js');
 const utc = require('dayjs/plugin/utc');
 const RelativeTime = require('dayjs/plugin/relativeTime');
 const dayjs = require('dayjs').extend(utc).extend(RelativeTime);
 
 module.exports = {
-    create(data, division, name, date, type) {
+    create: (data, division, name, date, type) => {
         if (type === 'noEvents') {
             return new Discord.MessageEmbed()
                 .setAuthor('Ides', 'https://cdn.discordapp.com/avatars/841148794498580480/148535dbc855f1468b7dff5dc00f48dd.png?size=256')
@@ -15,7 +16,7 @@ module.exports = {
             return new Discord.MessageEmbed()
                 .setAuthor(name, process.env[`${division}_ICON`])
                 .setColor(data.EventColor)
-                .addField('Time', `${date.format('ddd, MMMM D')} at ${date.format('h:mm A')} UTC`, false)
+                .addField('Time', `**UTC Time**: ${date.format('ddd, MMMM D')} at ${date.format('h:mm A')}\n**Local Time**: <t:${data.Time}:F>`, false)
                 .addField('Host', data.Trainer, false)
                 .addField('Duration', `${data.Duration} Minutes`, false)
                 .addField('Notes', data.Notes, false)

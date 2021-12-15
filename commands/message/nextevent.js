@@ -1,11 +1,12 @@
-const Cache = require('../utility/cache');
+const Cache = require('../../utility/cache');
 const utc = require('dayjs/plugin/utc');
-const embedUtil = require('../utility/embedUtil');
+const embedUtil = require('../../utility/embedUtil');
 const dayjs = require('dayjs').extend(utc);
 
 module.exports = {
-    name: 'nextEvent',
+    name: 'nextevent',
     aliases: ['ne'],
+    permissions: 'SEND_MESSAGES',
     cooldown: 5,
     args: true,
     execute(message, args) {
@@ -17,7 +18,6 @@ module.exports = {
         const date = dayjs.unix(nextEvent.Time).utc(),
             name = division === 'PBST' ? 'Security' : division === 'TMS' ? 'Syndicate' : division === 'PET' ? 'Emergency' : 'Media';
 
-        message.channel.send(embedUtil.create(nextEvent, division, name, date, 'nextEvent'));
-        message.channel.send(embedUtil.create(nextEvent, division, name, date, 'schedule'));
+        message.channel.send({ embeds: [embedUtil.create(nextEvent, division, name, date, 'nextEvent'), embedUtil.create(nextEvent, division, name, date, 'schedule')] });
     }
 }

@@ -7,7 +7,6 @@ module.exports = {
         const data = await database.getNotification();
         for (const notification of data) {
             const user = await client.users.fetch(notification.user_id), trello_id = notification.trello_id;
-            console.log(user);
             const timestamp = parseInt(notification.time_stamp);
 
             if (timestamp - Date.now()/1000 < 0) return database.removeNotification(user.id, trello_id);
