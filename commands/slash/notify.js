@@ -40,7 +40,7 @@ module.exports = {
                 database.addNotification(user.id, event.Time, event.TrainingID).then(() => {
                     notifier.newTimer(offset, event.TrainingID, user);
                     const date = dayjs.unix(event.Time).utc(), name = event.Division === 'PBST' ? 'Security' : event.Division === 'TMS' ? 'Syndicate' : event.Division === 'PET' ? 'Emergency' : 'Media';
-                    return interaction.editReply({ content: `200 | Notification set for event \`${event.TrainingID}\`! You will be notified when the event starts. (The event may be expedited or delayed, refer to the host for the actual starting time!)`, ephemeral: true, embeds: [embedUtil.create(event, event.Division, name, date, 'schedule')] });
+                    return interaction.editReply({ ephemeral: true, embeds: [status.success(`Notification set for event \`${event.TrainingID}\`! You will be notified when the event starts. (The event may be expedited or delayed, refer to the host for the actual starting time!)`), embedUtil.create(event, event.Division, name, date, 'schedule')] });
                 }).catch((e) => console.log(e));
             }
         }
