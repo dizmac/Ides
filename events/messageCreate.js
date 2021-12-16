@@ -47,7 +47,6 @@ module.exports = {
         try {
             command.execute(message, args, client, root);
         } catch (error) {
-            console.log(error)
             return message.reply({ embeds: [status.serverError('Something went wrong while processing your request')] });
         }
     }

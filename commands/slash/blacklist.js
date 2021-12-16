@@ -21,7 +21,6 @@ module.exports = {
         const { options, guild, author } = interaction;
 
         const target = options.getUser('target');
-        console.log(target)
         const guild_id = guild.id;
         let reason = options.getString('reason');
 
