@@ -16,7 +16,7 @@ module.exports = {
         .addUserOption(option => option
             .setName('target')
             .setDescription('View the user\'s blacklist status')),
-    async executeInteraction(interaction) {
+    async execute(interaction) {
 
         const { options, guild } = interaction;
 

@@ -2,6 +2,7 @@ const database = require('../../utility/database');
 const cache = require('../../utility/cache');
 const notifier = require('../../utility/notifier');
 const embedUtil = require('../../utility/embedUtil');
+const status = require('../../utility/status');
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const utc = require('dayjs/plugin/utc');
 const dayjs = require('dayjs').extend(utc);
@@ -32,8 +33,8 @@ module.exports = {
                         return exists = true;
                 })
 
-                if (exists) return interaction.editReply({ content: `400 | You already have a notification set up for the event \`${event.TrainingID}\``, ephemeral: true });
-                if (offset <= 0) return interaction.editReply({ content: `400| The start of event \`${event.TrainingID}\` has already passed!`, ephemeral: true })
+                if (exists) return interaction.editReply({ embeds: [status.badRequest(`You already have a notification set up for the event \`${event.TrainingID}\``)], ephemeral: true });
+                if (offset <= 0) return interaction.editReply({ embeds: [status.badRequest(`The start of event \`${event.TrainingID}\` has already passed!`)], ephemeral: true })
 
 
                 database.addNotification(user.id, event.Time, event.TrainingID).then(() => {

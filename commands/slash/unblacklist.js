@@ -1,4 +1,5 @@
 const database = require('../../utility/database');
+const status = require('../../utility/status');
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
@@ -21,8 +22,8 @@ module.exports = {
         await interaction.editReply({ content: `Removing the user from the blacklist for this guild (**${guild_id}**)!`, ephemeral: true });
 
         database.removeBlacklist(guild_id, target.id).then((r) => {
-            if (r) interaction.editReply({ content: `200 | Successfully removed ${target.username} from the command blacklist!`, ephemeral: true });
-            else interaction.editReply({ content: '500 | Something went wrong while removing the user from the command blacklist.', ephemeral: true });
+            if (r) interaction.editReply({ embeds: [status.success(`Successfully removed ${target.username} from the command blacklist!`)], ephemeral: true });
+            else interaction.editReply({ embeds: [status.badRequest('Something went wrong while removing the user from the command blacklist.')], ephemeral: true });
         });
     }
 }

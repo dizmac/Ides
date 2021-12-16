@@ -1,9 +1,11 @@
 const Cache = require('../../utility/cache');
 const filter = require('../../utility/filter');
-const utc = require('dayjs/plugin/utc');
 const embedUtil = require('../../utility/embedUtil');
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const status = require('../../utility/status');
+const utc = require('dayjs/plugin/utc');
 const dayjs = require('dayjs').extend(utc);
+const { SlashCommandBuilder } = require("@discordjs/builders");
+
 
 
 module.exports = {
@@ -30,7 +32,7 @@ module.exports = {
         const division = options.getString('division');
         let num = options.getInteger('limit'), host = options.getString('host'), counter = 0, data = Cache.getCache(division), eventCount = data.length, embeds = [];
 
-        if (num <= 0 || num > 10) return interaction.reply({ content: '400 | Bad Request', ephemeral: true });
+        if (num <= 0 || num > 10) return interaction.reply({ embeds: [status.badRequest('You must include a valid range of events (0 < number ≤ 10)')], ephemeral: true });
 
         if (host !== null) {
             data = filter.filterHost(data, host);

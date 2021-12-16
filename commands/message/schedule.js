@@ -2,6 +2,7 @@ const Cache = require('../../utility/cache');
 const utc = require('dayjs/plugin/utc');
 const embedUtil = require('../../utility/embedUtil');
 const math = require('mathjs');
+const status = require('../../utility/status');
 const dayjs = require('dayjs').extend(utc);
 
 
@@ -18,7 +19,7 @@ module.exports = {
 
         num = args[1] && args[1].toLowerCase() !== 'all' ? Math.floor(math.evaluate(args[1])) : data.length + 1;
 
-        if (args[1] !== 'all' && num <= 0 || num > 10) return message.reply({ content: '400 | Bad Request'});
+        if (args[1] !== 'all' && num <= 0) return message.reply({ embeds: [status.badRequest('You must include a valid range of events (0 < number)')] });
 
 
 
