@@ -9,12 +9,13 @@ let cache = {
     TMS: [],
     PET: [],
     PBM: []
-};
+}, counter = 1;
 
 async function sGet() {
-    console.log("[CACHE] Sending requests to Kronos API!");
+    console.log(`[CACHE] Sending Request ID: ${counter} to Kronos API!`);
     await Kronos.get.schedule('', true).then(r => {
-        let data = JSON.parse(r);
+        let data = JSON.parse(r); counter++; data[0] = 0;
+        cache.Global = [];
         get(data.pbst, 'PBST');
         get(data.tms, 'TMS');
         get(data.pet, 'PET');
